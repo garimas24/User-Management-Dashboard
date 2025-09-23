@@ -1,11 +1,11 @@
 // src/components/UserForm.js
 
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from "react-router-dom"; // Import useLocation
+import { useNavigate, useLocation } from "react-router-dom"; 
 
 function UserForm({ onSave }) {
   const navigate = useNavigate();
-  const location = useLocation(); // Get the location object
+  const location = useLocation();
   const user = location.state?.user; // Access the user object passed in the state
 
   const [formData, setFormData] = useState({
@@ -17,8 +17,7 @@ function UserForm({ onSave }) {
   });
 
   useEffect(() => {
-    // This effect will run when the 'user' object changes.
-    // It pre-fills the form with data from the passed user object.
+    // This effect pre-fills the form when a user is passed for editing.
     if (user) {
       setFormData(user);
     }
@@ -31,6 +30,7 @@ function UserForm({ onSave }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Pass the form data to the parent component's onSave function
     await onSave(formData);
     navigate('/');
   };
