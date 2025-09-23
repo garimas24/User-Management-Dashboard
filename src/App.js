@@ -1,11 +1,11 @@
 // src/App.js
-
 import React, { useState, useEffect, useMemo } from 'react';
 import UserList from './components/UserList';
 import UserForm from './components/UserForm';
 import FilterPopup from './components/FilterPopup';
 import { fetchUsers, addUser, updateUser, deleteUser } from './api/userApi';
 import './styles/UserManagement.css';
+import TablePagination from './components/TablePagination';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -57,7 +57,7 @@ function App() {
     }
     return filtered;
   }, [users, searchQuery, filters]);
-
+  
   // Sort Logic
   const sortedUsers = useMemo(() => {
     const sortableUsers = [...filteredAndSearchedUsers];
@@ -71,7 +71,7 @@ function App() {
     return sortableUsers;
   }, [filteredAndSearchedUsers, sortConfig]);
 
-  // Pagination Logic
+  // ✅ Pagination Logic
   const totalPages = Math.ceil(sortedUsers.length / limit);
   const startIndex = (currentPage - 1) * limit;
   const usersToDisplay = sortedUsers.slice(startIndex, startIndex + limit);
@@ -123,9 +123,6 @@ function App() {
           onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
           className="search-input"
         />
-        {/* <button onClick={() => setShowFilterPopup(true)} className="filter-button">
-          Reset     //////
-        </button> */}
         <button onClick={() => setEditingUser({})} className="add-button">
           Add New User
         </button>
@@ -160,17 +157,13 @@ function App() {
                 <option value={100}>100</option>
               </select>
             </span>
-            <span>
-              Page {currentPage} of {totalPages}
-            </span>
-            <button onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-            enabled={currentPage === 1}>
-              Previous
-            </button>
-            <button onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))} 
-             enabled={currentPage === totalPages}>
-              Next
-            </button>
+
+            {/* ✅ Use TablePagination here */}
+            <TablePagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
           </div>
         </>
       )}
