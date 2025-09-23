@@ -1,9 +1,6 @@
-// src/api/userApi.js
 
 const API_URL = 'https://jsonplaceholder.typicode.com/users';
 
-// Assumption: The JSONPlaceholder API doesn't have a 'department' field, so we'll add one to our mock data for demonstration.
-// Also, it won't persist changes, but the API calls and state updates will demonstrate the functionality.
 
 export const fetchUsers = async () => {
   const response = await fetch(API_URL);

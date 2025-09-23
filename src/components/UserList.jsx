@@ -1,5 +1,3 @@
-// src/components/UserList.js
-
 import React from 'react';
 
 const SortArrow = ({ sortKey, currentSortKey, direction }) => {
@@ -30,6 +28,7 @@ function UserList({ users, onEdit, onDelete, onSort, sortConfig }) {
               <td>{user.email}</td>
               <td>{user.department}</td>
               <td className="actions">
+                
                 <button onClick={() => onEdit(user)} className="edit-button">Edit</button>
                 <button onClick={() => onDelete(user.id)} className="delete-button">Delete</button>
               </td>
