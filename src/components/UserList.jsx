@@ -28,9 +28,20 @@ function UserList({ users, onEdit, onDelete, onSort, sortConfig }) {
               <td>{user.email}</td>
               <td>{user.department}</td>
               <td className="actions">
-                
+
                 <button onClick={() => onEdit(user)} className="edit-button">Edit</button>
-                <button onClick={() => onDelete(user.id)} className="delete-button">Delete</button>
+
+                <button
+                  onClick={() => {
+                    if (window.confirm("Are you sure you want to delete this user?")) {
+                      onDelete(user.id);
+                    }
+                  }}
+                  className="delete-button"
+                >
+                  Delete
+                </button>
+
               </td>
             </tr>
           ))
