@@ -1,4 +1,4 @@
-/* src/styles/UserManagement.css */
+
 
 body { 
   font-family: Arial, sans-serif; 
@@ -19,22 +19,23 @@ h1 {
   color: #333; 
 }
 
-.header-controls { 
-  display: flex; 
+.header-controls {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  margin-bottom: 20px;
   gap: 10px; 
-  justify-content: 
-  flex-end; 
-  align-items: center; 
-  margin-bottom: 20px; 
-  flex-wrap: wrap; 
 }
 
-.search-input { 
-  flex-grow: 1; 
-  padding: 10px; 
-  border: 1px solid #ccc; 
-  border-radius: 5px; 
+.search-input {
+  flex: 1;                
+  max-width: 300px;       
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
 }
+
 .filter-button, .add-button { 
   padding: 10px 15px; 
   border: none; 

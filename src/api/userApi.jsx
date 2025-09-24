@@ -34,38 +34,19 @@ export const addUser = async (userData) => {
   return { ...userData, id: newUser.id };
 };
 
-// export const updateUser = async (userId, userData) => {
-//   const response = await fetch(`${API_URL}/${userId}`, {
-//     method: 'PUT',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(userData),
-//   });
-//   if (!response.ok) {
-//     throw new Error('Failed to update user');
-//   }
-//   return { ...userData, id: userId };
-// };
-
-    export const updateUser = async (id, user) => {
-  const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
-    method: 'PATCH', // Change this from 'PUT' to 'PATCH'
-    body: JSON.stringify(user),
+export const updateUser = async (userId, userData) => {
+  const response = await fetch(`${API_URL}/${userId}`, {
+    method: 'PUT',
     headers: {
-      'Content-type': 'application/json; charset=UTF-8',
+      'Content-Type': 'application/json',
     },
+    body: JSON.stringify(userData),
   });
-
   if (!response.ok) {
-    throw new Error('Failed to update user.');
+    throw new Error('Failed to update user');
   }
-
-  // The mock API returns the updated data, which we use to update state
-  const updatedUser = await response.json();
-  return updatedUser;
+  return { ...userData, id: userId };
 };
-
 
 export const deleteUser = async (userId) => {
   const response = await fetch(`${API_URL}/${userId}`, {
